@@ -1,0 +1,37 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.getronics.hr.Z_FIORI_OVERTIME.controller.Master">
+
+	<semantic:MasterPage xmlns:semantic="sap.m.semantic" title="{masterView>/title}" id="page" navButtonPress="onNavBack" showNavButton="true">
+		<semantic:subHeader>
+			<Bar xmlns="sap.m" id="headerBar">
+				<contentMiddle>
+					<SearchField width="100%" id="searchField" tooltip="{i18n>masterSearchTooltip}" showRefreshButton="{= !${device>/support/touch} }" search="onSearch">
+					</SearchField>
+				</contentMiddle>
+			</Bar>
+		</semantic:subHeader>
+
+		<semantic:content>
+			<PullToRefresh xmlns="sap.m" id="pullToRefresh" visible="{device>/support/touch}" refresh="onRefresh" />
+			<!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
+			<List xmlns="sap.m" id="list" items="{      path: '/OT_requestSet',      sorter: {       path: 'ZaatypeText',       descending: false       },      groupHeaderFactory: '.createGroupHeader'     }" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" selectionChange="onSelectionChange" noDataText="{masterView>/noDataText}" growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished" busyIndicatorDelay="{masterView>/delay}">
+				<infoToolbar>
+					<Toolbar id="filterBar" visible="{masterView>/isFilterBarVisible}" press="onOpenViewSettings" active="true">
+						<Title text="{masterView>/filterBarLabel}" id="filterBarLabel" />
+					</Toolbar>
+				</infoToolbar>
+				<items>
+					<ObjectListItem title="{Zename}&#10;{ZaatypeText}" type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}" press="onSelectionChange">
+					</ObjectListItem>
+				</items>
+			</List>
+		</semantic:content>
+
+	<semantic:addAction>
+
+	    <semantic:AddAction id="__action1" tooltip="Add" press="_ButtonPressed" />
+
+	</semantic:addAction>
+
+	</semantic:MasterPage>
+
+</mvc:View>

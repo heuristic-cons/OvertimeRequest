@@ -1,0 +1,72 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="com.getronics.hr.Z_FIORI_OVERTIME.controller.Detail">
+	<semantic:DetailPage xmlns:semantic="sap.m.semantic" title="{i18n>detailTitle}" id="page" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}" navButtonPress="onNavBack" showNavButton="{device>/system/phone}">
+		<semantic:content>
+			<ObjectHeader xmlns="sap.m" title="{/#OT_request/ZzAttType/@sap:label} : {ZaatypeText}" id="objectHeader">
+			</ObjectHeader>
+			<IconTabBar xmlns="sap.m" class="sapUiResponsiveContentPadding" id="iconTabBar">
+				<items><IconTabFilter id="iconTabBarFilter1" tooltip="{i18n>detailIconTabBarInfo}" icon="sap-icon://hint">
+					<form:SimpleForm xmlns:form="sap.ui.layout.form" id="simpleFormChange">
+						
+					<form:content>
+						
+					    <Label text="{/#OT_request/ZzDateFrom/@sap:label}" id="__label1" />
+						
+					    <DatePicker width="100%" value="{ZzDateFrom}" id="__picker1" />
+						
+					    <Label text="{/#OT_request/ZzTimeFrom/@sap:label}" id="__label2" />
+						
+					    <TimePicker value="{ZzTimeFrom}" id="__picker2" displayFormat="HH:mm:ss" localeId="en-GB" placeholderSymbol="-" mask="h9:59:59" />
+						
+					    <Label text="{/#OT_request/ZzDateTo/@sap:label}" id="__label3" />
+						
+					    <DatePicker width="100%" value="{ZzDateTo}" id="__picker3" />
+						
+					    <Label text="{/#OT_request/ZzTimeTo/@sap:label}" id="__label4" />
+						
+					    <TimePicker value="{ZzTimeTo}" id="__picker4" displayFormat="HH:mm:ss" localeId="en-GB" placeholderSymbol="-" mask="h9:59:59" />
+						
+					    <Label text="{/#OT_request/ZzAttType/@sap:label}" id="__label5" />
+						
+					    <Input width="100%" value="{ZzAttType}" id="__input1" />
+						
+					    <Label text="{/#OT_request/ZzNote/@sap:label}" width="100%" id="__label6" />
+						
+					    <TextArea value="{ZzNote}" id="__area1" maxLength="255" />
+						
+					    <Label text="{/#OT_request/ZzNote/@sap:label}" id="__label0" />
+						
+					</form:content>
+						
+					<form:customData>
+						
+					    <sap.ui.core:CustomData xmlns:sap.ui.core="sap.ui.core" value="true" id="__data70" key="w5g.dt.editable" />
+						
+					</form:customData>
+						
+					</form:SimpleForm>
+					<content>
+					    <Button text="{i18n>SUBMIT}" width="100px" id="__button0" press="SUBMIT" />
+					</content>
+					
+					</IconTabFilter>
+					<IconTabFilter id="iconTabBarFilter2" tooltip="{i18n>detailIconTabBarAttachments}" icon="sap-icon://attachment">
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+
+		</semantic:content>
+
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress" />
+		</semantic:sendEmailAction>
+
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress" />
+		</semantic:shareInJamAction>
+
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton xmlns:footerbar="sap.ushell.ui.footerbar" title="{detailView>/saveAsTileTitle}" id="shareTile" />
+		</semantic:saveAsTileAction>
+	</semantic:DetailPage>
+
+</mvc:View>
